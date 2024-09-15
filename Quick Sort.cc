@@ -4,13 +4,7 @@ using namespace std ;
 
 ll ans  ; 
 vector<ll> arr ; 
-int findMid(int l , int r){
-    int n = r - l  ; 
-    ll arr2[] = {arr[l] , arr[r] , arr[l + n / 2 ]} ; 
-    if(arr2[0]<=max(arr2[1] , arr2[2]) and arr2[0]>=min(arr2[1] ,arr2[2]))return l;
-    if(arr2[1]<=max(arr2[2] , arr2[0]) and arr2[1]>=min(arr2[0] ,arr2[2])) return r;
-    if(arr2[2]<=max(arr2[1] , arr2[0]) and arr2[2]>=min(arr2[1] ,arr2[0])) return l + n/2;
-}
+
 int QuickSort(int l , int r ){
  int pivot = l ;
  int i = pivot + 1 ; // indix of first element greater than pivot  
