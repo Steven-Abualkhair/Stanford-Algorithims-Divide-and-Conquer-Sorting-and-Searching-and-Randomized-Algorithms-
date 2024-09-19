@@ -1,0 +1,40 @@
+/*    
+ “You just keep pushing. You just keep pushing.            ███████╗████████╗███████╗██╗   ██╗    
+  I made every mistake that could be made.                 ██╔════╝╚══██╔══╝██╔════╝██║   ██║    
+  But I just kept pushing.”                                ███████╗   ██║   █████╗  ██║   ██║    
+  — René Descartes                                         ╚════██║   ██║   ██╔══╝  ╚██╗ ██╔╝    
+                                                           ███████║   ██║   ███████╗ ╚████╔╝     
+                                                           ╚══════╝   ╚═╝   ╚══════╝  ╚═══╝              
+ */
+#include <bits/stdc++.h>    
+using namespace std ;                     
+
+vector<int> arr ;
+void Merge(int  l , int mid , int r){
+int part1 = l  , part2 = mid+1  , idx = 0  ;
+int temp[r-l+1] ; 
+for(int i = l ; i <= r ; i++){
+if(part1>mid)temp[idx++]=arr[part2++] ; 
+else if(part2>r)temp[idx++]=arr[part1++]; 
+else if(arr[part1]<=arr[part2])temp[idx++]=arr[part1++] ; 
+else temp[idx++]=arr[part2++] ; 
+}
+for(int i = 0 ; i < idx ; i++) arr[l++]=temp[i] ;  
+}
+void Divide (int l , int r ){
+if( l < r ) {
+int mid = (l + r ) / 2 ;   
+Divide(l , mid ) ;          
+Divide(mid+1 , r ) ; 
+Merge(l , mid , r );   
+}       
+}             
+
+main(){
+ int n ; cin >> n; 
+ arr.assign(n , {}) ;
+ for(auto&x : arr) cin >> x; 
+ Divide( 0 , n - 1) ; 
+ for(auto x : arr) cout<< x <<" " ;  
+}
+                                    
